@@ -1,0 +1,22 @@
+{
+  "name": "@codex-remote/protocol",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "dev": "tsup src/index.ts --dts --format esm,cjs --watch"
+  },
+  "devDependencies": {
+    "tsup": "^8.3.5"
+  }
+}

@@ -107,6 +107,8 @@ If scripts are missing, create them in the root `package.json` and ensure they w
 Add nested `AGENTS.md` files in subfolders only when you need narrower rules.
 
 ---
+## Bugs
+Bugs: add regression test when it fits.
 
 ## Documentation
 - Browse web to reference any other documentation that might be useful if you are unsure about something.
@@ -127,3 +129,13 @@ Add nested `AGENTS.md` files in subfolders only when you need narrower rules.
 - Use `openaiDeveloperDocs` MCP server to browse relevant openai developer documentation like Codex and codex app server and any thinge else required.
 
 ## Remember this file AGENTS.md is a growing and evolving file so make sure to update it with important information as we build the app like learnings, mistakes, best practices, and other important information.
+
+## Implementation notes (2026-02-09)
+- Monorepo now uses PNPM workspace + Turborepo with apps/mobile, apps/bridge, packages/protocol.
+- Bridge uses WebSocket token auth and forwards JSON-RPC messages to codex app-server stdio JSONL without protocol rewriting.
+- Bridge pairing host resolution prefers Tailscale `100.x` addresses when running in `tailscale` mode.
+- Mobile UI follows chat-first + drawer layout from uiux.md and stitch screens, with inline approvals and timeline cards.
+- Shared protocol/client/reducer logic lives in packages/protocol and should remain the single source of truth for Codex message handling.
+- Protocol coverage includes account + rate-limit reads and item delta handling for plan/reasoning updates.
+- Mobile connection flow now guards against stale Codex rollout threads (`missing rollout path`) by avoiding eager hydration, pruning invalid threads, and retrying turns on fresh threads.
+

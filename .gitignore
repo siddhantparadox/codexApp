@@ -1,0 +1,9 @@
+node_modules
+.pnpm-store
+.turbo
+.expo
+dist
+build
+coverage
+
+stitch
